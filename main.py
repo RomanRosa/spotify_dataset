@@ -218,4 +218,45 @@ spotify['t_zip Code'] = spotify['t_zip Code'].astype(str).astype(int)
 from pandas.core.reshape.merge import merge
 spotify = spotify.merge(zips_subset,right_on = 'zip',left_on = 't_zip Code', how = 'left')
 print(spotify.shape)
-spotify.head()
+print(spotify.head())
+
+
+# (M) Convert the variables "lat" and "lng" into a float type
+# and validate data consistency
+
+# Convert 'lat' & 'lng' to float type variables
+spotify['lat'] = spotify['lat'].astype(str).astype(float)
+spotify['lng'] = spotify['lng'].astype(str).astype(float)
+# Verify that 'lat' and 'lng are float type variables' --> consistency
+print(spotify.dtypes)
+print(spotify['lat'].value_counts())
+
+# Validate 'lat' & 'lng' values
+    ## Latitude must be a number between -90 and 90
+    ## Longitude must a number between -180 and 180
+
+def lat_val(value):
+    if -90<=value<=+90:
+        return 'Correct'
+    else:
+        return 'Incorrect'
+    
+def lng_val(value):
+    if -180<=value<=+180:
+        return 'Correct'
+    else:
+        return 'Incorrect'
+    
+# This temporal variable is created to validate if 'lat' values are correct
+spotify['lat_validation'] = spotify['lat'].apply(lambda row: lat_val(row))
+print(spotify.head())
+
+# This temporal variable is created to validate 'lng' values are correct
+spotify['lng_validation'] = spotify['lng'].apply(lambda row: lat_val(row))
+print(spotify.head())
+
+# Checking 'lat' & 'lng' variables are 'Correct' for all records
+print(spotify['lng_validation'].value_counts())
+
+# Checking 'lat' & 'lng' variables are 'Correct' for all records
+print(spotify['lat_validation'].value_counts())
