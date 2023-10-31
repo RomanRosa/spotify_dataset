@@ -260,3 +260,10 @@ print(spotify['lng_validation'].value_counts())
 
 # Checking 'lat' & 'lng' variables are 'Correct' for all records
 print(spotify['lat_validation'].value_counts())
+
+# (N) From the variable "city" and "state" remove the digits
+# found within the text strings
+spotify['city'] = spotify['city'].str.replace(r'[0-9]','')
+spotify['state_name'] = spotify['state_name'].str.replace(r'[0-9]','')
+print(spotify.shape)
+print(spotify.head())
