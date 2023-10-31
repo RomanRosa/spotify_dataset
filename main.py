@@ -290,3 +290,19 @@ spotify['state'] = spotify['state'].apply(lambda row: delete_accents(row))
 print(spotify.head())
 
 print(spotify['d_release_date'].unique())
+
+# (Q) Convert the values in the variable "release date" to type datetime,
+# also count those that do not have the necessary structure to be converted
+# into datetime and delete those records
+
+# (Q)-I Verify invalid records in 'release_date' 
+# (if they have the correct datetime format)
+invalid_date = spotify['d_release_date'].str.contains(r'[a-zA-Z]').sum()
+print(f'Total Records With Incorrect Structure: {invalid_date}')
+print(f'Total Records: {spotify.shape[0]}')
+
+# (Q)-II Convert 'release_date' records to datetime type
+spotify['d_release_date'] = pd.to_datetime(spotify['d_release_date'],
+                                           format = '%Y-%m-%d %H:%M:%S')
+print(spotify.head())
+print(spotify.dtypes)
