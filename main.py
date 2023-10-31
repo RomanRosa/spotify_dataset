@@ -89,3 +89,12 @@ spotify.drop(columns = ['v_explicit', 'v_key'], inplace = True)
 spotify.reset_index(drop = True, inplace = True)
 print(spotify.shape)
 print(spotify.head())
+
+# (E) How Many Records in the Variable "zip Code" are invalid values? 
+# That is, they contain letters
+
+# Using regex to identify invalid records in 't_zip Code' variable.
+#  (it means that contains letters)
+invalid_zipcode = spotify['t_zip Code'].str.contains(r'[a-zA-Z]').sum()
+print(f'Total Invalid Zip Code Records: {invalid_zipcode}')
+print(f'Total Records: {spotify.shape[0]}')
