@@ -159,3 +159,8 @@ def clean_text(text):
     text=text.lower()
     text=remove_punct(text)
     return text
+
+# Apply 'cjk_detect' function just to return text in its native format
+spotify['t_name'] = spotify['t_name'].apply(lambda row: cjk_detect(row))
+spotify.reset_index(drop = True, inplace = True)
+print(spotify.head())
