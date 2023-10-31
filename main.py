@@ -306,3 +306,19 @@ spotify['d_release_date'] = pd.to_datetime(spotify['d_release_date'],
                                            format = '%Y-%m-%d %H:%M:%S')
 print(spotify.head())
 print(spotify.dtypes)
+
+
+
+# 2. From the treated dataset obtain the following data:
+    # Get a DataFrame showing the record count by gender
+gender_count = spotify['v_genero'].value_counts()
+gender_count = pd.DataFrame(gender_count)
+gender_count = gender_count.rename(columns = {0:'v_genero','v_genero':'total'})
+print(gender_count.shape)
+print(gender_count.head())
+
+# (B) Create a new variable called "duration_minutos" 
+# that is the value of the variable "duration_ms" in minutes
+spotify['duration_minutos'] = (spotify['c_duration_ms']/60)
+print(spotify.shape)
+print(spotify.head())
