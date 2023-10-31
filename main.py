@@ -178,3 +178,20 @@ clean_first_artist = clean_text(first_artist)
 clean_first_artist = remove_punct(first_artist)
 print(f'No Clean First Artist: {first_artist}')
 print(f'Clean First Artist: {clean_first_artist}')
+
+
+# (K) Normalize the variable "gender" in such a way 
+# that you get only 8 categories
+
+# Checking for null values in 'v_genero' variable
+spotify['v_genero'].isnull().sum()
+spotify['v_genero'].value_counts()
+spotify['v_genero'].value_counts(normalize=True)
+spotify['v_genero'].value_counts(1)[-4].sum()
+spotify['v_genero'].value_counts(1)[-3:].sum()
+spotify_genero_norm = dict(zip(list(spotify['v_genero'].value_counts(1)[-17:].index),
+                               ['Others']*90))
+print(spotify_genero_norm)
+
+# Normalized v_genero variable
+spotify['v_genero'].replace(spotify_genero_norm).value_counts()
