@@ -365,3 +365,21 @@ print(energyByGenderCount)
 min_loadness_song = spotify[spotify['c_loudness'] == spotify['c_loudness'].min()]
 min_loadness_song.reset_index(drop = True, inplace = True)
 print(min_loadness_song)
+
+# Get song with highest 'loudness'
+    ## As we can see, in this case we have just 1 song with maximum
+    #  'loudness'(maximum value = 3.85)
+max_loadness_song = spotify[spotify['c_loudness'] == spotify['c_loudness'].max()]
+max_loadness_song.reset_index(drop = True, inplace = True)
+print(max_loadness_song)
+
+# To validate results in the gotten number of songs:
+    ## Lets see records based in 'c_loudness' for the lowest value
+aux = spotify['c_loudness'].sort_values(ascending = True)
+aux.reset_index(drop = True, inplace = True)
+aux = pd.DataFrame(aux)
+print(aux.head(10))
+
+# To validate results in the gotten number of songs above:
+    ## Lets see records based in 'c_loudness' for the highest value
+print(aux.tail(3))
