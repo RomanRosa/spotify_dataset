@@ -112,3 +112,10 @@ print(spotify.head())
 invalid_gender = spotify['v_genero'].str.contains(r'[a-zA-Z-ZéüöêåøЧастьХемиуэйЧасть]').sum()
 print(f'Total Records With Invalid Gender: {invalid_gender}')
 print(f'Total Records: {spotify.shape[0]}')
+
+
+# (H) Delete the records that don't have a valid "gender",
+#  that is, that contain letters in the values
+spotify = spotify[~spotify['v_genero'].str.contains(r'[a-zA-Z-ZéüöêåøЧастьХемиуэйЧасть]', na=False)]
+print(spotify.shape)
+spotify.head(3)
