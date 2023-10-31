@@ -328,3 +328,8 @@ print(spotify.head())
 popularity = spotify.sort_values(by = 'v_popularity', ascending = False)
 popularity.reset_index(drop = True, inplace = True)
 print(popularity.head())
+
+# 10 most popular songs base in 'v_popularity' value are:
+most_popular = popularity[['t_artists','v_popularity']]
+most_popular.reset_index(drop = True, inplace = True)
+print(most_popular.head(10))
