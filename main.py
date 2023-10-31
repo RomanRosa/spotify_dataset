@@ -105,3 +105,10 @@ spotify = spotify[spotify['t_zip Code'].map(lambda x: x.isnumeric())]
 spotify.reset_index(drop = True, inplace = True)
 print(spotify.shape)
 print(spotify.head())
+
+# (G) How many records in the variable "gender" are invalid values? , 
+# that is, they contain letters
+# Using regex to identify letters in 'v_genero'
+invalid_gender = spotify['v_genero'].str.contains(r'[a-zA-Z-ZéüöêåøЧастьХемиуэйЧасть]').sum()
+print(f'Total Records With Invalid Gender: {invalid_gender}')
+print(f'Total Records: {spotify.shape[0]}')
