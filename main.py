@@ -118,4 +118,44 @@ print(f'Total Records: {spotify.shape[0]}')
 #  that is, that contain letters in the values
 spotify = spotify[~spotify['v_genero'].str.contains(r'[a-zA-Z-ZéüöêåøЧастьХемиуэйЧасть]', na=False)]
 print(spotify.shape)
-spotify.head(3)
+print(spotify.head())
+
+
+# (I) Clean the variable "name", remove special characters
+# and everything must be in lowercase
+
+# This functions just map the column 'name' to keep
+#  names even if they have asian characters
+import re
+
+def cjk_detect(texts):
+    # Korean
+    if re.search("[\uac00-\ud7a3]", texts):
+        return texts
+    # Japanese
+    if re.search("[\u3040-\u30ff]", texts):
+        return texts
+    # Chinese
+    if re.search("[\u4e00-\u9FFF]", texts):
+        return texts
+    else:
+        return texts
+    
+# This functions is used to remove special marks/characters
+def remove_punct(text):
+    try:
+        text=text.replace(".",' ').replace(";",' ').replace(":",' ').replace(",",' ')
+        text=text.replace("(",' ').replace(")",' ').replace("|",' ').replace('"',' ')
+        text=text.replace("%",' ').replace("$",' ').replace("/",' ').replace('\'',' ')
+        text=text.replace("-",' ').replace("_",' ').replace("*",' ').replace('+',' ')
+        text=text.replace("#",' ').replace("@",' ').replace("!",' ').replace('?',' ')
+        text=text.replace("[",' ').replace("]",' ').replace("'",' ').replace('¡',' ')
+    except:
+        pass
+    return text
+
+# This functions is used to clean 'name' and convert to lowercase
+def clean_text(text):
+    text=text.lower()
+    text=remove_punct(text)
+    return text
