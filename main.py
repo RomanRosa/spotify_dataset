@@ -322,3 +322,9 @@ print(gender_count.head())
 spotify['duration_minutos'] = (spotify['c_duration_ms']/60)
 print(spotify.shape)
 print(spotify.head())
+
+# (C) What are the 10 most popular songs?
+# Create a 'popularity' variable to identify most popular songs
+popularity = spotify.sort_values(by = 'v_popularity', ascending = False)
+popularity.reset_index(drop = True, inplace = True)
+print(popularity.head())
