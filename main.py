@@ -333,3 +333,13 @@ print(popularity.head())
 most_popular = popularity[['t_artists','v_popularity']]
 most_popular.reset_index(drop = True, inplace = True)
 print(most_popular.head(10))
+
+# (D) What is the average duration in minutes and milliseconds?
+
+# Get the average duration in 'minutes'
+average_minutes = spotify['duration_minutos'].mean()
+print(f'Average Duration In Minutes: {average_minutes}')
+
+# Get the average duration in 'miliseconds'
+average_miliseconds = spotify['c_duration_ms'].mean()
+print(f'Average Duration In Miliseconds: {average_miliseconds}')
