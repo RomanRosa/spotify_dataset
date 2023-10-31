@@ -195,3 +195,27 @@ print(spotify_genero_norm)
 
 # Normalized v_genero variable
 spotify['v_genero'].replace(spotify_genero_norm).value_counts()
+
+
+# (L) Add the following columns to your dataset: zip, lat, lng, city,
+# state name using the zips table
+
+# Read 'zips_practica.csv' data table
+zips = pd.read_csv('zips_practica.csv')
+print(zips.shape)
+print(zips.head())
+
+print(zips.dtypes)
+print(spotify.dtypes)
+
+zips_subset = zips[['zip','lat','lng','city','state_name']]
+print(zips_subset.shape)
+print(zips_subset.head())
+
+spotify['t_zip Code'] = spotify['t_zip Code'].astype(str).astype(int)
+
+# Merge spotify & zips_subset dataframes
+from pandas.core.reshape.merge import merge
+spotify = spotify.merge(zips_subset,right_on = 'zip',left_on = 't_zip Code', how = 'left')
+print(spotify.shape)
+spotify.head()
