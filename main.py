@@ -51,3 +51,19 @@ spotify.rename(columns=dict(zip(t_feats,t_feats_new)),inplace=True)
 spotify.rename(columns=dict(zip(c_feats,c_feats_new)),inplace=True)
 print(spotify.shape)
 print(spotify.head())
+
+# DELETE DUPLICATES
+    # Approach: Delete Duplicates Using: duplicated()
+spotify.duplicated()
+spotify[spotify.duplicated()]
+spotify.drop_duplicates(inplace = True)
+
+# Verify if duplicate records were deleted
+spotify.duplicated().sum()
+
+# Create a new index and delete the previous one
+spotify.reset_index(drop = True, inplace = True)
+
+# Verify dataframe shape after remove duplicates
+print(spotify.shape)
+print(spotify.head())
