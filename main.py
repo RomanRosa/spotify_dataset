@@ -170,3 +170,11 @@ print(spotify.head())
 spotify['t_name'] = spotify['t_name'].apply(lambda row: clean_text(row))
 spotify.reset_index(drop = True, inplace = True)
 print(spotify.head())
+
+# (J) From the variable "artist" select only the 
+# first one that appears in the list in addition eliminate special characters
+first_artist = spotify['t_artists'].iloc[0]
+clean_first_artist = clean_text(first_artist)
+clean_first_artist = remove_punct(first_artist)
+print(f'No Clean First Artist: {first_artist}')
+print(f'Clean First Artist: {clean_first_artist}')
