@@ -1,5 +1,4 @@
 # Import required dependencies
-# Import required libraries
 import pandas as pd
 import numpy as np
 import datetime
@@ -98,3 +97,11 @@ print(spotify.head())
 invalid_zipcode = spotify['t_zip Code'].str.contains(r'[a-zA-Z]').sum()
 print(f'Total Invalid Zip Code Records: {invalid_zipcode}')
 print(f'Total Records: {spotify.shape[0]}')
+
+# (F) Delete records that don't have a valid "zip Code", that is, 
+# it contains letters in the values
+spotify['t_zip Code'] = spotify['t_zip Code'].astype('unicode')
+spotify = spotify[spotify['t_zip Code'].map(lambda x: x.isnumeric())]
+spotify.reset_index(drop = True, inplace = True)
+print(spotify.shape)
+print(spotify.head())
