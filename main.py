@@ -343,3 +343,17 @@ print(f'Average Duration In Minutes: {average_minutes}')
 # Get the average duration in 'miliseconds'
 average_miliseconds = spotify['c_duration_ms'].mean()
 print(f'Average Duration In Miliseconds: {average_miliseconds}')
+
+
+# (E) What is the 'average' and 'count' of "energy" by "gender"?
+spotify['v_genero'] = spotify['v_genero'].astype(str).astype(float)
+
+# This is the average of 'energy' by 'gender'
+energyByGenderMean = spotify.groupby('v_genero')['c_energy'].mean()
+pd.DataFrame(energyByGenderMean)
+print(energyByGenderMean)
+
+# This is the count of 'energy' by 'gender'
+energyByGenderCount = spotify.groupby('v_genero')['c_energy'].count()
+pd.DataFrame(energyByGenderCount)
+print(energyByGenderCount)
