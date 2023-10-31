@@ -382,4 +382,30 @@ print(aux.head(10))
 
 # To validate results in the gotten number of songs above:
     ## Lets see records based in 'c_loudness' for the highest value
-print(aux.tail(3))
+print(aux.tail())
+
+
+# (G) Obtain the 10 percentiles of the continuous variables
+# Get 10 percentiles for 'c_acousticness'
+print(spotify['c_acousticness'].describe(percentiles=[.1,.2,.3,.4,.5,.6,.7,.8,.9,1]))
+
+# Get 10 percentiles for 'c_danceability'
+print(spotify['c_danceability'].describe(percentiles=[.1,.2,.3,.4,.5,.6,.7,.8,.9,1]))
+
+# Get 10 percentiles for 'c_duration_ms'
+print(spotify['c_duration_ms'].describe(percentiles=[.1,.2,.3,.4,.5,.6,.7,.8,.9,1]))
+
+# Get 10 percentiles for 'c_energy'
+print(spotify['c_energy'].describe(percentiles=[.1,.2,.3,.4,.5,.6,.7,.8,.9,1]))
+
+# Get 10 percentiles for 'c_instrumentalness'
+print(spotify['c_instrumentalness'].describe(percentiles=[.1,.2,.3,.4,.5,.6,.7,.8,.9,1]))
+
+# Get 10 percentiles for 'c_liveness'
+print(spotify['c_liveness'].describe(percentiles=[.1,.2,.3,.4,.5,.6,.7,.8,.9,1]))
+
+# Get 10 percentiles for 'c_loudness'
+print(spotify['c_loudness'].describe(percentiles=[.1,.2,.3,.4,.5,.6,.7,.8,.9,1]))
+
+print(spotify.shape)
+print(spotify.head())
