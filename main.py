@@ -357,3 +357,11 @@ print(energyByGenderMean)
 energyByGenderCount = spotify.groupby('v_genero')['c_energy'].count()
 pd.DataFrame(energyByGenderCount)
 print(energyByGenderCount)
+
+
+# (F) Which song has the lowest "loudness" and which song has the highest one
+# Get song with lowest 'loedness'
+    # As we can see, we have 9 songs with the same 'loudness' (minimum value = -60)
+min_loadness_song = spotify[spotify['c_loudness'] == spotify['c_loudness'].min()]
+min_loadness_song.reset_index(drop = True, inplace = True)
+print(min_loadness_song)
