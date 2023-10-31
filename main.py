@@ -83,3 +83,9 @@ def completeness(dataframe):
 # Apply "completeness function" to spotify dataframe
 completeness(spotify)
 
+# (D) Delete Variables With >=20% of Missing Value
+# Drop columns with 20% or more missing values
+spotify.drop(columns = ['v_explicit', 'v_key'], inplace = True)
+spotify.reset_index(drop = True, inplace = True)
+print(spotify.shape)
+print(spotify.head())
