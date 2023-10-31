@@ -272,3 +272,21 @@ print(spotify.head())
 spotify['state'] = spotify[['city', 'state_name']].agg(', '.join, axis=1)
 print(spotify.shape)
 print(spotify.head())
+
+
+# (P) The values of the new variable "state", modify them
+# in a certain way that all o them must be in lowercase and without accents
+
+# Convert 'state' column to lowercase
+spotify['state'] = spotify['state'].apply(lambda x:x.lower())
+print(spotify.head())
+
+# This function is used to delete 'accents' with the 'unicodedata' library
+def delete_accents(s):
+    return ''.join(c for c in unicodedata.normalize('NFD', s)
+                  if unicodedata.category(c) != 'Mn')
+
+spotify['state'] = spotify['state'].apply(lambda row: delete_accents(row))
+print(spotify.head())
+
+print(spotify['d_release_date'].unique())
