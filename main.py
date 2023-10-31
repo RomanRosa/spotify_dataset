@@ -267,3 +267,8 @@ spotify['city'] = spotify['city'].str.replace(r'[0-9]','')
 spotify['state_name'] = spotify['state_name'].str.replace(r'[0-9]','')
 print(spotify.shape)
 print(spotify.head())
+
+# (O) Create a new variable called "state" that is made up of "city" & "state name"
+spotify['state'] = spotify[['city', 'state_name']].agg(', '.join, axis=1)
+print(spotify.shape)
+print(spotify.head())
