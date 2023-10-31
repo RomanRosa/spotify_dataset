@@ -1,0 +1,37 @@
+# Import required dependencies
+# Import required libraries
+import pandas as pd
+import numpy as np
+import datetime
+import re
+import unicodedata
+import warnings
+pd.options.display.max_columns = None
+pd.set_option('max_rows', 5000)
+pd.options.display.float_format = '{:,.2f}'.format 
+warnings.filterwarnings('ignore')
+
+
+# Read source dataset
+spotify= 'C:\gitrepos\spotify_dataset\dataset\spotify_practica.csv'
+print(spotify.shape)
+print(spotify.head())
+
+
+# Identify type of variables in "spotify DataFrame"
+print(spotify.dtypes)
+
+
+# (a) - Tagging Variables By Type
+# Prefixes for variable types
+# 'c_' --> Numeric Variables: Discrete & Continous
+# 'v_' --> Categorical Variables
+# 'd_' --> Date Type Variables
+# 't_' --> Text Type Variables
+
+c_feats = ['acousticness','danceability','duration_ms','energy',
+           'instrumentalness','liveness','loudness',
+           'speechiness','tempo','valence']
+v_feats = ['mode','key','explicit','popularity','genero']
+t_feats = ['artists','id','name','zip Code']
+d_feats = ['release_date']
