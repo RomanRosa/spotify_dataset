@@ -22,7 +22,7 @@ print(spotify.head())
 print(spotify.dtypes)
 
 
-# (a) - Tagging Variables By Type
+# (A) - Tagging Variables By Type
 # Prefixes for variable types
 # 'c_' --> Numeric Variables: Discrete & Continous
 # 'v_' --> Categorical Variables
@@ -52,7 +52,7 @@ spotify.rename(columns=dict(zip(c_feats,c_feats_new)),inplace=True)
 print(spotify.shape)
 print(spotify.head())
 
-# DELETE DUPLICATES
+# (B) DELETE DUPLICATES
     # Approach: Delete Duplicates Using: duplicated()
 spotify.duplicated()
 spotify[spotify.duplicated()]
@@ -67,3 +67,19 @@ spotify.reset_index(drop = True, inplace = True)
 # Verify dataframe shape after remove duplicates
 print(spotify.shape)
 print(spotify.head())
+
+# (C) DATA COMPLETENESS
+# Function used to get completeness values
+# The input/argument is --> spotify
+def completeness(dataframe):
+    comp = pd.DataFrame(dataframe.isnull().sum())
+    comp.reset_index(inplace = True)
+    comp = comp.rename(columns = {'index':'column', 0:'total'})
+    comp['completeness'] = (1 - comp['total']/dataframe.shape[0])*100
+    comp = comp.sort_values(by = 'completeness', ascending = True)
+    comp.reset_index(drop = True, inplace = True)
+    return comp
+
+# Apply "completeness function" to spotify dataframe
+completeness(spotify)
+
