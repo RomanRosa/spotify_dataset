@@ -164,3 +164,9 @@ def clean_text(text):
 spotify['t_name'] = spotify['t_name'].apply(lambda row: cjk_detect(row))
 spotify.reset_index(drop = True, inplace = True)
 print(spotify.head())
+
+# Apply 'clean_text' function to convert it to lowercase without affect 
+# (Japanese, Chinese & Korean) names
+spotify['t_name'] = spotify['t_name'].apply(lambda row: clean_text(row))
+spotify.reset_index(drop = True, inplace = True)
+print(spotify.head())
